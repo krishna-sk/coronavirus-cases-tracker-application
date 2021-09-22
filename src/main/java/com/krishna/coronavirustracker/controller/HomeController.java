@@ -54,8 +54,8 @@ public class HomeController {
 	public String homeModified(@PathVariable(name = "pageNo") Integer pageNo, Model model) {
 		
 
-		if (pageNo > (allStats.size() / 20) || pageNo<=0)
-			pageNo = 1;
+		if (pageNo > (allStats.size() / 20) || pageNo<=0 || pageNo==1)
+			return "redirect:/";
 
 		res = allStats.entrySet().stream().skip((pageNo - 1) * 20).limit(20)
 				.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
